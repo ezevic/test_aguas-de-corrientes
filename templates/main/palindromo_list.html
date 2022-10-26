@@ -4,40 +4,37 @@
 {% endblock title %}
 {% block body %}
     <div class='container'>
-        <h4 class='mt-4 mb-3 text-center'>Listado de palabras ingrasadas anteriormente</h4>
-        {% for palabra in palabras %}
-            <div class='row'>
-                {% if palabra.check_palindromo == False %}
-                    <div id='card-false'
-                         class="card text-bg-danger mb-3 mx-auto"
-                         style="max-width: 22rem;">
-                    {% else %}
-                        <div id='card-true'
-                             class="card text-bg-success mb-3 mx-auto"
+        <h4 class='mt-5 mb-5 text-center'>Listado de palabras ingrasadas anteriormente</h4>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 d-flex justify-content-around">
+            {% for palabra in palabras %}
+                <div class="col">
+                    {% if palabra.check_palindromo == False %}
+                        <div id='card-false'
+                             class="card text-bg-danger mb-3 mx-auto"
                              style="max-width: 22rem;">
-                        {% endif %}
-                        <div class="card-header">
-                            <a class='text-white text-decoration-none font-weight-bold'
-                               id='title-card'
-                               href="{{ polindroma.get_absolute_url }}">{{ palabra.palabra }}</a>
-                        </div>
-                        <div class="card-body">
-                            {% if palabra.check_palindromo == False %}
-                                <h6 class="card-title">No es palindromo</h6>
-                            {% else %}
-                                <h6 class="card-title">Es palindromo</h6>
+                        {% else %}
+                            <div id='card-true'
+                                 class="card text-bg-success mb-3 mx-auto"
+                                 style="max-width: 22rem;">
                             {% endif %}
-                            {% if palabra.created_at != palabra.update_at %}
-                                <p class="card-text">Creado: {{ palabra.created_at }}</p>
-                                <p class="card-text">Actualizado: {{ palabra.update_at }}</p>
-                            {% else %}
-                                <p class="card-text">Creado: {{ palabra.created_at }}</p>
-                            {% endif %}
-                            <a href="{% url 'index' %}" class="btn btn-light">Nueva palabra</a>
+                            <div class="card-header">
+                                <a class='text-white text-decoration-none font-weight-bold'
+                                   id='title-card'
+                                   href="{{ palabra.get_absolute_url }}">{{ palabra.palabra }}</a>
+                            </div>
+                            <div class="card-body">
+                                {% if palabra.check_palindromo == False %}
+                                    <h6 class="card-title">No es palindromo</h6>
+                                {% else %}
+                                    <h6 class="card-title">Es palindromo</h6>
+                                {% endif %}
+                                    <p class="card-text">Creado: {{ palabra.created_at }}</p>
+                                    <p class="card-text">Actualizado: {{ palabra.update_at }}</p>
+                                <a href="{% url 'index' %}" class="btn btn-light">Nueva palabra</a>
+                            </div>
                         </div>
                     </div>
+                {% endfor %}
                 </div>
-            {% endfor %}
-        </div>
-    
-    {% endblock body %}
+            </div>
+        {% endblock body %}
