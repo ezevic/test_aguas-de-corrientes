@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views.generic import ListView
 
@@ -37,7 +37,7 @@ def index(request):
                     palabra=palabra_form, check_palindromo=if_palindromo(palabra_form))
                 palindromo.save()
 
-            return redirect('index')
+            return redirect(f'palabra/{palindromo.pk}')
 
         else:
             print('formulario no valido')
@@ -53,7 +53,33 @@ def index(request):
     return render(request, 'index.html', context=context)
 
 
+# class based view to list all 'palabras' from the database
+
 class PalabrasListView(ListView):
+
+
     model = Palindromo
-    paginate_by = 10
+    paginate_by = 20
     context_object_name = 'palabras'
+
+
+# view function for a specify 'palabra'
+
+def palabra_detail_view(request, pk):
+    palabra = get_object_or_404(Palindromo, pk=pk)
+
+    # function that determinate if a 'palabra' was created before.
+
+    def same_date(date_created, date_updated):
+        if date_created.replace(microsecond=0) == date_updated.replace(microsecond=0):
+            return True
+        else:
+            return False
+
+    context = {
+        'palabra': palabra,
+        'same_date': same_date(
+            palabra.created_at, palabra.update_at)
+    }
+
+    return render(request, 'main/palindromo_detail.html', context=context)
