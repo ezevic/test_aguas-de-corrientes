@@ -6,7 +6,8 @@ from django.db import models
 
 class Palindromo(models.Model):
     palabra = models.CharField("Palabra", max_length=100)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=False, blank=False)
+    update_at = models.DateTimeField(auto_now=True)
     check_palindromo = models.BooleanField(
         "Es palindromo", null=False, blank=False)
 
