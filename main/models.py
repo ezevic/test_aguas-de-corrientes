@@ -19,3 +19,7 @@ class Palindromo(models.Model):
     def get_absolute_url(self):
         """Returns the URL to access a detail record for this 'palabra'."""
         return reverse('palabra-detail', args=[str(self.id)])
+
+    
+    class Meta:
+        ordering = ['update_at']
