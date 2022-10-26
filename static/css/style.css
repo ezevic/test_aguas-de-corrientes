@@ -1,0 +1,50 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+
+/* base.html */
+
+
+
+body {
+    background-color: #8AA1B1;
+}
+
+/* NAVBAR */
+
+.navbar-brand {
+    font-family: 'Dancing Script', cursive !important;
+    font-size: 1.6rem !important;
+    padding: 0.5rem 0;
+    transition: 300ms;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.1);
+}
+
+
+
+/* palindromo_list.html */
+
+
+#card-false {
+    background-color: #4A5043 !important;
+} 
+
+
+#card-true {
+    background-color: #587B7F !important;
+} 
+
+#title-card:hover {
+    text-decoration: underline !important;
+    text-shadow: 0 0 2px rgba(0,0,0,0.7);
+}
+
+
+/* palindromo_detail.html*/
+
+#detail-palabra {
+    height: 30rem !important;
+}
