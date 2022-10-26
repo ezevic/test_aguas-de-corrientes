@@ -4,11 +4,11 @@
 {% endblock title %}
 {% block body %}
     <div class='container'>
-        <h1>Hola</h1>
+        <h3 class="mt-5 mb-3">Aplicacion para verificar si un texto es palindromo</h3>
         <form action="" method="POST" enctype='multipart/form-data'>
             {% csrf_token %}
             {{ form }}
-            <button type="submit" class="btn btn-primary mt-3">Verificar!</button>
+            <button type="submit" class="btn btn-lg btn-primary mt-3">Verificar!</button>
         </form>
     </div>
 {% endblock body %}
