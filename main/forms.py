@@ -18,5 +18,5 @@ class PalindromoForm(forms.ModelForm):
 
         widgets = {
 
-            'palabra': forms.TextInput(attrs={'class': 'form-control','placeholder': 'Ingresa una palabra' , 'required': True})
+            'palabra': forms.TextInput(attrs={'class': 'form-control-lg w-100','placeholder': 'Ingresa una palabra o frase' , 'required': True})
         }
