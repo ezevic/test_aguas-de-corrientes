@@ -9,9 +9,11 @@ Python 3.8
 Instalar requerimientos (pip install -r requirements.txt)
 
 Correr migraciones(solo si es necesario, la primera vez es obligatorio)
+
 `python manage.py migrate`
 
 Correr el servidor django
+
 `python manage.py runserver`
 
 
@@ -21,28 +23,38 @@ Para correr la aplicación, se necesita tener instalado docker en el sistema. Pu
 
 Una vez que docker esté instalado, a través de la consola ingresar a la carpeta raiz del proyecto (donde está localizado el archivo Dockerfile) y ejecutar los siguientes comandos:
 
-Build the Docker image and tag it.
+Crear la imagen.
 
-`sudo docker build -t party-manager .` No, that "." at the end of the line is not a typo.
+`sudo docker build -t test_aguas-de-corrientes .`
 
-You can validate that the image was successfully built by executing:
+Para verificar si la imagen se creó correctamente, ejecutar el siguiente comando:
 
-`sudo docker image ls` And you should see the image tag we specified above. If you can see the image but with no tag,
-there probably was an error with the building process.
+`sudo docker image ls` y debería aparecer la imagen con el tag especificado anteriormente. Si se puede ver la imagen pero no el tag, probablemente algo salió mal y hay que repetir el proceso.
 
-Finally, you can run the image inside a container.
 
-`sudo docker run --network host party-manager`
+Finalmente, ya se puede correr la imagen.
 
-You can also run it in detached mode so that it does not consume the terminal.
+`sudo docker run --network host test_aguas-de-corrientes`
 
-`sudo docker run -d --network host party-manager`
 
-You may also want to list the running containers.
+Para terminar de correr el container, primero listamos los containers e identificamos su CONTAINER_ID
 
 `sudo docker ps`
 
-Then you can use the CONTAINER ID to stop the running container.
+
+Finalmente, ejecutamos el siguiente comando
 
 `sudo docker stop {CONTAINER ID}`
 
+
+### Endpoints Disponibles
+
+Server url: localhost:8000
+
+- `/` Home o index. En esta ruta se encuentra el formualrio para ingresar una palabra, y la view se encarga de verificar si es palíndroma.
+-`palabra/` Vista de detalle de la palabra. Aqui podemos observar si la palabra cumple con la condición de palíndroma y si la misma ya estaba en la base de datos antes de ser ingresada. A su vez, si ya fue ingresada anteriormente, retorna un campo datetimefield con la ultima modificación de la misma.
+-`lista_palabra/` Aquí se encuentran listadas todas las palabras introducidas desde la creación de la bases de datos. Note que para ingresar a este endpoint, es necesario crear un usuario e iniciar sesión a través de los siguientes endpoints respectivamente.
+-`register/` Aquí creamos nuestro usuario
+-`login/` Aquí iniciamos sesión
+-`accounts/logout/` Para cerrar sesión
+-`accounts/password_change/ Para recuperar la contraseña de un usuario cuando sea necesario
