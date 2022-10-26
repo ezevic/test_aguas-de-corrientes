@@ -8,4 +8,4 @@ from .models import Palindromo
 
 @admin.register(Palindromo)
 class AdminPalindromo(admin.ModelAdmin):
-    list_display = ('palabra', 'check_palindromo')
+    list_display = ('palabra', 'check_palindromo', 'created_at', 'update_at')
