@@ -68,7 +68,7 @@ Server url: localhost:8000
 
 ### Tecnologías implementadas
 - Para el frontend utilicé el framework Bootstrap ya que es con el que me siento más cómodo por su facilidad de uso y por lo rápido que se puede implementar a un proyecto.
-- La base de datos, en principio fue postgresql, pero debido a que no pude integrarla al docker-compose por una serie de errores, opté por usar sqlite, ya que docker se encarga de crear la base de datos, mientras que si usara postgres, al no utilizar docker-compose, habría que crearla manualmente. Si desea utilizar la base de datos postgresql, basta con descomentar las líneas pertenecientes a la configuración de dicha base de datos en el archivo `project_root/core/settings.py` y comentar las pertenecientes a sqlite.
+- La base de datos, en principio fue postgresql, pero debido a que no pude integrarla al docker-compose por una serie de errores, opté por usar sqlite, ya que docker se encarga de crear la base de datos automáticamente, no así con postgres, que al no utilizar docker-compose, habría que crearla manualmente. Si desea utilizar la base de datos postgresql, basta con descomentar las líneas pertenecientes a la configuración de dicha base de datos en el archivo `project_root/core/settings.py` y comentar las pertenecientes a sqlite.
 - Con respecto al control de versiones, utilicé git y el hosting github.
 
 
