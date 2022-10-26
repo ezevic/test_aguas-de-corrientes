@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}
+    Home
+{% endblock title %}
+{% block body %}
+<div class='container'>
+    <div id='detail-palabra' class='row vh-25 align-items-center'>
+        <div class='col col-sm-12 col-md-8 col-lg-6 mx-auto aling-items-center'>
+            {% if palabra.check_palindromo == False %}
+                        <div id='card-false'
+                             class="card text-bg-danger mb-3 mx-auto">
+                        {% else %}
+                            <div id='card-true'
+                                 class="card text-bg-success mb-3 mx-auto"
+                                 style="max-width: 22rem;">
+                            {% endif %}
+                            <div class="card-header">
+                                <a class='text-white text-decoration-none font-weight-bold'
+                                   id='title-card'
+                                   href="{{ palabra.get_absolute_url }}">{{ palabra.palabra }}</a>
+                            </div>
+                            <div class="card-body">
+                                {% if palabra.check_palindromo == False %}
+                                    <h6 class="card-title">No es palindromo</h6>
+                                {% else %}
+                                    <h6 class="card-title">Es palindromo</h6>
+                                {% endif %}
+                                {% if same_date %}
+                                    <p class="card-text">Creado: {{ palabra.created_at }}</p>
+                                {% else %}
+                                    <p class="card-text">Creado: {{ palabra.created_at }}</p>
+                                    <p class="card-text">Actualizado: {{ palabra.update_at }}</p>
+                                    <p>La palabra ya se encontraba en la base de datos</p>
+                                {% endif %}
+                                <a href="{% url 'index' %}" class="btn btn-light">Nueva palabra</a>
+
+        </div>
+    </div>
+</div>
+{% endblock body %}
